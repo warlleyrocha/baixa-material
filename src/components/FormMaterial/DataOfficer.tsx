@@ -9,113 +9,67 @@ type DataOfficerProps = {
 
 export function DataOfficer({ register, errors }: DataOfficerProps) {
   return (
-    <div className="bg-white rounded-2xl shadow-md p-6 space-y-6">
-      <h2 className="text-2xl md:text-3xl font-semibold text-gray-900">Dados dos Técnicos</h2>
+    <div className="bg-[#f4f9fd]/80 backdrop-blur-sm rounded-2xl shadow-xl border-0 p-6 pt-1 space-y-6 transform hover:scale-[1.01] transition-all duration-300">
+      <div className="pb-4">
+        <h2 className="flex items-center space-x-2 text-xl font-semibold text-gray-900">
+          <div className="w-6 h-6 text-blue-600">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+              <circle cx="9" cy="7" r="4" />
+              <path d="m22 21-3-3" />
+              <circle cx="17" cy="17" r="3" />
+            </svg>
+          </div>
+          <span>Dados dos Técnicos</span>
+        </h2>
+      </div>
+      <div className="space-y-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {/* Nomes dos técnicos */}
+          <FormField<FormData>
+            id="officer-name"
+            name="officer.name"
+            label="Oficial I"
+            placeholder="Digite o nome do técnico"
+            register={register}
+            required
+            error={errors.officer?.name}
+          />
+          <FormField<FormData>
+            id="officer-second-name"
+            name="officer.secondName"
+            label="Oficial II"
+            placeholder="Digite o nome do segundo técnico"
+            register={register}
+            error={errors.officer?.secondName}
+          />
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        {/* Nomes dos técnicos */}
-        <FormField<FormData>
-          id="officer-name"
-          name="officer.name"
-          label="Oficial I"
-          placeholder="Digite o nome do técnico"
-          register={register}
-          error={errors.officer?.name}
-        />
-        <FormField<FormData>
-          id="officer-second-name"
-          name="officer.secondName"
-          label="Oficial II"
-          placeholder="Digite o nome do segundo técnico"
-          register={register}
-          error={errors.officer?.secondName}
-        />
-
-        {/* Matrículas */}
-        <FormField<FormData>
-          id="officer-registration"
-          name="officer.registration"
-          label="Matrícula"
-          placeholder="Ex: 123456"
-          register={register}
-          error={errors.officer?.registration}
-        />
-        <FormField<FormData>
-          id="officer-second-registration"
-          name="officer.secondRegistration"
-          label="Matrícula do Segundo Técnico"
-          placeholder="Ex: 654321"
-          register={register}
-          error={errors.officer?.secondRegistration}
-        />
-
-        {/* Cidade e Estado */}
-        <FormField<FormData>
-          id="officer-city"
-          name="officer.city"
-          label="Cidade"
-          placeholder="Digite a cidade"
-          register={register}
-          error={errors.officer?.city}
-        />
-        <FormField<FormData>
-          id="officer-state"
-          name="officer.state"
-          label="Estado"
-          placeholder="Ex: SP"
-          maxLength={2}
-          register={register}
-          error={errors.officer?.state}
-        />
-
-        {/* Rua e Número */}
-        <FormField<FormData>
-          id="officer-street"
-          name="officer.street"
-          label="Rua"
-          placeholder="Nome da rua"
-          register={register}
-          error={errors.officer?.street}
-        />
-        <FormField<FormData>
-          id="officer-number"
-          name="officer.number"
-          label="Número"
-          placeholder="Ex: 123"
-          register={register}
-          error={errors.officer?.number}
-        />
-
-        {/* Bairro ocupando toda a largura */}
-        <FormField<FormData>
-          id="officer-hood"
-          name="officer.hood"
-          label="Bairro"
-          placeholder="Nome do bairro"
-          register={register}
-          error={errors.officer?.hood}
-          className="md:col-span-2"
-        />
-
-        {/* Data */}
-        <FormField<FormData>
-          id="officer-date"
-          name="officer.date"
-          label="Data"
-          type="date"
-          register={register}
-          error={errors.officer?.date}
-        />
-
-        {/* Atividade realizada */}
-        <FormField<FormData>
-          id="officer-activity"
-          name="officer.activity"
-          label="Atividade Realizada"
-          placeholder="Descreva a atividade realizada"
-          register={register}
-          error={errors.officer?.activity}
-        />
+          {/* Matrículas */}
+          <FormField<FormData>
+            id="officer-registration"
+            name="officer.registration"
+            label="Matrícula"
+            placeholder="Ex: 123456"
+            register={register}
+            required
+            error={errors.officer?.registration}
+          />
+          <FormField<FormData>
+            id="officer-second-registration"
+            name="officer.secondRegistration"
+            label="Matrícula do Segundo Técnico"
+            placeholder="Ex: 654321"
+            register={register}
+            error={errors.officer?.secondRegistration}
+          />
+        </div>
       </div>
     </div>
   );
