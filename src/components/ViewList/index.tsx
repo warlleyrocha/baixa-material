@@ -1,10 +1,9 @@
-
 type Launch = {
   readonly id: string;
   readonly date: string;
   readonly activity: string;
-  readonly officers: { id: string, name: string; registration: string }[];
-  readonly materials: { id: string, name: string; code: string; unit: string; quantity: number }[];
+  readonly officers: { id: string; name: string; registration: string }[];
+  readonly materials: { id: string; name: string; code: string; unit: string; quantity: number }[];
 };
 
 type LaunchesListProps = {
@@ -43,8 +42,8 @@ export function LaunchesList({ launches }: LaunchesListProps) {
               <ul className="list-disc list-inside text-gray-700 space-y-1">
                 {launch.materials.map((mat) => (
                   <li key={mat.id}>
-                    {mat.name} - Código: {mat.code} - {mat.quantity}{" "}
-                    {mat.unit === "unidade" ? "unidade(s)" : "metro(s)"}
+                    {mat.name} - Código: {mat.code} - {mat.quantity}{' '}
+                    {mat.unit === 'unidade' ? 'unidade(s)' : 'metro(s)'}
                   </li>
                 ))}
               </ul>

@@ -1,5 +1,5 @@
 // components/FormField.tsx
-import type { FieldError, FieldValues, Path, UseFormRegister } from "react-hook-form";
+import type { FieldError, FieldValues, Path, UseFormRegister } from 'react-hook-form';
 
 type FormFieldProps<T extends FieldValues> = Readonly<{
   label: string;
@@ -9,7 +9,8 @@ type FormFieldProps<T extends FieldValues> = Readonly<{
   error?: FieldError;
   className?: string;
   registerOptions?: Parameters<UseFormRegister<T>>[1];
-}> & React.InputHTMLAttributes<HTMLInputElement>;
+}> &
+  React.InputHTMLAttributes<HTMLInputElement>;
 
 export function FormField<T extends FieldValues>({
   label,
@@ -17,7 +18,7 @@ export function FormField<T extends FieldValues>({
   name,
   register,
   error,
-  className = "",
+  className = '',
   registerOptions,
   ...props
 }: FormFieldProps<T>) {
@@ -35,7 +36,7 @@ export function FormField<T extends FieldValues>({
           bg-white text-gray-900 placeholder-gray-400
           focus:outline-none focus:ring-2 focus:ring-blue-200 focus:border-blue-500
           transition-colors duration-200
-          ${error ? "border-red-400" : ""}
+          ${error ? 'border-red-400' : ''}
         `}
       />
       {error && <p className="text-red-500 text-sm mt-1">{error.message}</p>}

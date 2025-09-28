@@ -1,4 +1,4 @@
-import { defineConfig, globalIgnores } from 'eslint/config'
+import { defineConfig, globalIgnores } from 'eslint/config';
 
 export default defineConfig([
   globalIgnores(['dist']),
@@ -8,7 +8,7 @@ export default defineConfig([
     parserOptions: {
       ecmaVersion: 2020,
       sourceType: 'module',
-      ecmaFeatures: { jsx: true }
+      ecmaFeatures: { jsx: true },
     },
     env: {
       browser: true,
@@ -19,11 +19,12 @@ export default defineConfig([
       'plugin:@typescript-eslint/recommended',
       'plugin:react-hooks/recommended',
       'plugin:react-refresh/recommended',
-      'prettier' // sempre por último para evitar conflito com Prettier
+      'plugin:prettier/recommended',
+      'prettier',
     ],
     rules: {
       // coloque regras customizadas aqui
-      'no-console': 'warn'
-    }
-  }
-])
+      'no-console': 'warn',
+    },
+  },
+]);

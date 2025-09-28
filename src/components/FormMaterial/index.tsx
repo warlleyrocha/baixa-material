@@ -1,9 +1,9 @@
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { formSchema } from "../../types/formMaterial";
-import type { FormData } from "../../types/formMaterial";
-import { DataOfficer } from "./DataOfficer";
-import { DataMaterials } from "./DataMaterials";
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { formSchema } from '../../types/formMaterial';
+import type { FormData } from '../../types/formMaterial';
+import { DataOfficer } from './DataOfficer';
+import { DataMaterials } from './DataMaterials';
 
 type FormProps = {
   readonly onNewLaunch?: (launch: any) => void;
@@ -32,7 +32,7 @@ function generateWhatsAppText(data: FormData) {
   // Materiais
   text += `📦 *Materiais Utilizados:*\n`;
   materials.forEach((mat, i) => {
-    const unitLabel = mat.unit === "unidade" ? "unidade(s)" : "metro(s)";
+    const unitLabel = mat.unit === 'unidade' ? 'unidade(s)' : 'metro(s)';
     text += `${i + 1}. ${mat.name} - Código: ${mat.code} - Quantidade: ${mat.quantity} ${unitLabel}\n`;
   });
 
@@ -40,35 +40,42 @@ function generateWhatsAppText(data: FormData) {
 }
 
 export function Form({ onNewLaunch }: FormProps) {
-  const { register, handleSubmit, reset, control, formState: { errors, isValid } } = useForm<FormData>({
+  const {
+    register,
+    handleSubmit,
+    reset,
+    control,
+    formState: { errors, isValid },
+  } = useForm<FormData>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       officer: {
-        name: "",
-        secondName: "",
-        registration: "",
-        secondRegistration: "",
-        city: "",
-        state: "",
-        street: "",
-        number: "",
-        hood: "",
-        date: "",
-        activity: "",
+        name: '',
+        secondName: '',
+        registration: '',
+        secondRegistration: '',
+        city: '',
+        state: '',
+        street: '',
+        number: '',
+        hood: '',
+        date: '',
+        activity: '',
       },
-      materials: [{ name: "", code: "", unit: "unidade", quantity: 1 }],
+      materials: [{ name: '', code: '', unit: 'unidade', quantity: 1 }],
     },
-    mode: "onChange",
+    mode: 'onChange',
   });
 
   const onSubmit = (data: FormData) => {
     const text = generateWhatsAppText(data);
 
     // Copiar texto para o clipboard
-    navigator.clipboard.writeText(text)
-      .then(() => alert("Texto copiado para o WhatsApp!"))
-      .catch(() => alert("Erro ao copiar o texto"));
-      
+    navigator.clipboard
+      .writeText(text)
+      .then(() => alert('Texto copiado para o WhatsApp!'))
+      .catch(() => alert('Erro ao copiar o texto'));
+
     // Salvar no localStorage em formato compatível com LaunchesList
     const newLaunch = {
       id: crypto.randomUUID(),
@@ -76,14 +83,14 @@ export function Form({ onNewLaunch }: FormProps) {
       activity: data.officer.activity,
       officers: [
         { name: data.officer.name, registration: data.officer.registration },
-        { name: data.officer.secondName, registration: data.officer.secondRegistration }
+        { name: data.officer.secondName, registration: data.officer.secondRegistration },
       ],
-      materials: data.materials
+      materials: data.materials,
     };
 
-    const savedLaunches = JSON.parse(localStorage.getItem("launches") || "[]");
+    const savedLaunches = JSON.parse(localStorage.getItem('launches') || '[]');
     savedLaunches.push(newLaunch);
-    localStorage.setItem("launches", JSON.stringify(savedLaunches));
+    localStorage.setItem('launches', JSON.stringify(savedLaunches));
 
     // Atualizar estado no App
     if (onNewLaunch) onNewLaunch(newLaunch);
@@ -106,12 +113,10 @@ export function Form({ onNewLaunch }: FormProps) {
             type="submit"
             disabled={!isValid}
             className={`h-12 px-6 rounded-xl font-medium transition-colors text-white ${
-              isValid
-                ? "bg-blue-600 hover:bg-blue-700"
-                : "bg-gray-300 cursor-not-allowed"
+              isValid ? 'bg-blue-600 hover:bg-blue-700' : 'bg-gray-300 cursor-not-allowed'
             }`}
           >
-            {isValid ? "Gerar Texto WhatsApp" : "Preencha todos os campos"}
+            {isValid ? 'Gerar Texto WhatsApp' : 'Preencha todos os campos'}
           </button>
         </div>
       </form>
