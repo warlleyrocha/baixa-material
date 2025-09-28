@@ -1,14 +1,14 @@
-import { useState, useEffect } from "react";
-import Header from "./components/Header";
-import { Form } from "./components/FormMaterial";
-import { LaunchesList } from "./components/ViewList/";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { useState, useEffect } from 'react';
+import Header from './components/Header';
+import { Form } from './components/FormMaterial';
+import { LaunchesList } from './components/ViewList/';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 function App() {
   const [launches, setLaunches] = useState<any[]>([]);
 
   useEffect(() => {
-    const saved = JSON.parse(localStorage.getItem("launches") || "[]");
+    const saved = JSON.parse(localStorage.getItem('launches') || '[]');
     setLaunches(saved);
   }, []);
 

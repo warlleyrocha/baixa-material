@@ -48,6 +48,7 @@ src/
 ## ⚙️ Instalação e Configuração
 
 1. **Clone o repositório**
+
    ```bash
    git clone <url-do-repositorio>
    cd baixa-material
@@ -65,14 +66,17 @@ src/
 ## 🏃‍♂️ Como Executar
 
 ### Desenvolvimento
+
 ```bash
 npm run dev
 # ou
 yarn dev
 ```
+
 Acesse: `http://localhost:5173`
 
 ### Build de Produção
+
 ```bash
 npm run build
 # ou
@@ -80,6 +84,7 @@ yarn build
 ```
 
 ### Preview da Build
+
 ```bash
 npm run preview
 # ou
@@ -114,6 +119,7 @@ npm run lint         # Executa o linter ESLint
 ## 📊 Validações de Formulário
 
 O projeto utiliza **Zod 4.1** para validação de schemas, garantindo:
+
 - Validação de tipos em tempo real
 - Mensagens de erro personalizadas e internationalizáveis
 - Validação tanto no frontend quanto na tipagem TypeScript

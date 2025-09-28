@@ -1,5 +1,5 @@
 // components/SelectField.tsx
-import type { FieldError, FieldValues, Path, UseFormRegister } from "react-hook-form";
+import type { FieldError, FieldValues, Path, UseFormRegister } from 'react-hook-form';
 
 type SelectFieldProps<T extends FieldValues> = Readonly<{
   label: string;
@@ -9,7 +9,8 @@ type SelectFieldProps<T extends FieldValues> = Readonly<{
   error?: FieldError;
   options: { value: string; label: string }[];
   className?: string;
-}> & React.SelectHTMLAttributes<HTMLSelectElement>;
+}> &
+  React.SelectHTMLAttributes<HTMLSelectElement>;
 
 export function SelectField<T extends FieldValues>({
   label,
@@ -18,7 +19,7 @@ export function SelectField<T extends FieldValues>({
   register,
   error,
   options,
-  className = "",
+  className = '',
   ...props
 }: SelectFieldProps<T>) {
   return (
@@ -35,7 +36,7 @@ export function SelectField<T extends FieldValues>({
           bg-white text-gray-900 placeholder-gray-400
           focus:outline-none focus:ring-2 focus:ring-blue-200 focus:border-blue-500
           transition-colors duration-200
-          ${error ? "border-red-400" : ""}
+          ${error ? 'border-red-400' : ''}
         `}
       >
         {options.map((opt) => (

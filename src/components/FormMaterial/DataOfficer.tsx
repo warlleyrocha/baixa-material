@@ -1,6 +1,6 @@
-import { FormField } from "./FormField";
-import type { FormData } from "../../types/formMaterial";
-import type { FieldErrors, UseFormRegister } from "react-hook-form";
+import { FormField } from './FormField';
+import type { FormData } from '../../types/formMaterial';
+import type { FieldErrors, UseFormRegister } from 'react-hook-form';
 
 type DataOfficerProps = {
   readonly register: UseFormRegister<FormData>;
@@ -10,9 +10,7 @@ type DataOfficerProps = {
 export function DataOfficer({ register, errors }: DataOfficerProps) {
   return (
     <div className="bg-white rounded-2xl shadow-md p-6 space-y-6">
-      <h2 className="text-2xl md:text-3xl font-semibold text-gray-900">
-        Dados dos Técnicos
-      </h2>
+      <h2 className="text-2xl md:text-3xl font-semibold text-gray-900">Dados dos Técnicos</h2>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {/* Nomes dos técnicos */}
