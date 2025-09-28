@@ -18,8 +18,8 @@ function App() {
 
   return (
     <Router>
-      <Header title="Baixa de Material" />
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-50 p-4">
+      <Header title="Relatório de Serviço" />
+      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 p-4">
         <Routes>
           <Route path="/" element={<Form onNewLaunch={handleNewLaunch} />} />
           <Route path="/launches" element={<LaunchesList launches={launches} />} />

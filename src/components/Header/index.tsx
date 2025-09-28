@@ -1,55 +1,50 @@
-import { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { HiDotsVertical } from 'react-icons/hi'; // ícone vertical bonito
+import { FiFileText } from 'react-icons/fi';
+import { FaArrowRotateLeft } from 'react-icons/fa6';
 
 type HeaderProps = {
   readonly title: string;
+  readonly subtitle?: string;
 };
 
-export function Header({ title }: HeaderProps) {
+export function Header({
+  title,
+  subtitle = 'Sistema moderno de gestão de relatórios',
+}: HeaderProps) {
   const navigate = useNavigate();
-  const [menuOpen, setMenuOpen] = useState(false);
-  const menuRef = useRef<HTMLDivElement>(null);
-
-  // Fechar menu ao clicar fora
-  useEffect(() => {
-    function handleClickOutside(event: MouseEvent) {
-      if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
-        setMenuOpen(false);
-      }
-    }
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
-  }, []);
 
   return (
-    <header className="bg-white shadow-md border-b border-gray-200">
-      <div className="max-w-5xl mx-auto px-6 py-8 flex justify-between items-center relative">
-        <h1 className="text-4xl font-semibold text-gray-900 tracking-tight">{title}</h1>
+    <header className="relative overflow-hidden bg-gradient-to-r from-indigo-500 to-purple-600 shadow-md border-b border-transparent">
+      {/* Bolas de fundo */}
+      <div className="absolute -top-16 -left-16 h-52 w-52 rounded-full bg-indigo-400 opacity-30"></div>
+      <div className="absolute -bottom-16 -right-16 h-72 w-72 rounded-full bg-purple-400 opacity-30"></div>
 
-        {/* Botão com ícone */}
-        <div className="relative" ref={menuRef}>
+      {/* Conteúdo */}
+      <div className="relative z-10 max-w-6xl mx-auto px-6 py-8 flex justify-between items-center">
+        {/* Ícone + título */}
+        <div className="flex items-center gap-4">
           <button
             type="button"
-            aria-label="Abrir menu de opções"
-            onClick={() => setMenuOpen((prev) => !prev)}
-            className="p-2 rounded-full hover:bg-gray-100 transition-colors"
+            onClick={() => navigate('/')}
+            className="bg-white/25 p-4 cursor-pointer rounded-lg flex items-center justify-center hover:bg-white/30 transition-colors"
+            aria-label="Ir para Home"
           >
-            <HiDotsVertical size={24} />
+            <FiFileText size={24} className="text-white" />
           </button>
-
-          {/* Menu oculto */}
-          {menuOpen && (
-            <div className="absolute right-0 mt-2 w-48 bg-white shadow-lg rounded-xl border border-gray-200 z-10">
-              <button
-                onClick={() => navigate('/launches')}
-                className="w-full text-left px-4 py-2 hover:bg-gray-100 rounded-t-xl"
-              >
-                Visualizar Lançamentos
-              </button>
-            </div>
-          )}
+          <div className="flex flex-col">
+            <h1 className="text-2xl md:text-3xl font-semibold text-white">{title}</h1>
+            <p className="text-sm md:text-base text-white/75">{subtitle}</p>
+          </div>
         </div>
+
+        <button
+          type="button"
+          className="hover:bg-white/20 transition-colors bg-white/25 p-2 rounded-lg flex items-center justify-center"
+          onClick={() => navigate('/launches')}
+          aria-label="Voltar"
+        >
+          <FaArrowRotateLeft size={20} className="text-white" />
+        </button>
       </div>
     </header>
   );

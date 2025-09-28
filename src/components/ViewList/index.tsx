@@ -1,6 +1,6 @@
 type Launch = {
   readonly id: string;
-  readonly date: string;
+  readonly date: string; // formato ISO: yyyy-mm-dd
   readonly activity: string;
   readonly officers: { id: string; name: string; registration: string }[];
   readonly materials: { id: string; name: string; code: string; unit: string; quantity: number }[];
@@ -11,18 +11,29 @@ type LaunchesListProps = {
 };
 
 export function LaunchesList({ launches }: LaunchesListProps) {
+  // Ordenar do mais recente para o mais antigo
+  const sortedLaunches = [...launches].sort(
+    (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime(),
+  );
+
+  // Função para formatar data em dd/mm/yyyy
+  const formatDate = (dateStr: string) => {
+    const [year, month, day] = dateStr.split('-');
+    return `${day}/${month}/${year}`;
+  };
+
   return (
     <div className="max-w-5xl mx-auto mt-8 space-y-6">
-      {launches.length === 0 ? (
+      {sortedLaunches.length === 0 ? (
         <p className="text-center text-gray-500 text-lg">Nenhum lançamento encontrado.</p>
       ) : (
-        launches.map((launch) => (
+        sortedLaunches.map((launch) => (
           <div
             key={launch.id}
             className="bg-white rounded-2xl shadow-md p-6 hover:shadow-lg transition-shadow duration-200"
           >
             <div className="flex justify-between items-center mb-4">
-              <span className="text-gray-400 text-sm">{launch.date}</span>
+              <span className="text-gray-400 text-sm">{formatDate(launch.date)}</span>
               <span className="text-blue-600 font-medium">{launch.activity}</span>
             </div>
 
