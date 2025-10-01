@@ -25,7 +25,7 @@ export function DataLocation({ register, errors }: DataLocationProps) {
         <FormField<FormData>
           id="officer-city"
           name="officer.city"
-          label="Cidade"
+          label="Cidade *"
           placeholder="Digite a cidade"
           register={register}
           error={errors.officer?.city}
@@ -33,7 +33,7 @@ export function DataLocation({ register, errors }: DataLocationProps) {
         <FormField<FormData>
           id="officer-state"
           name="officer.state"
-          label="Estado"
+          label="Estado *"
           placeholder="Ex: SP"
           maxLength={2}
           register={register}
@@ -44,7 +44,7 @@ export function DataLocation({ register, errors }: DataLocationProps) {
         <FormField<FormData>
           id="officer-street"
           name="officer.street"
-          label="Rua"
+          label="Rua *"
           placeholder="Nome da rua"
           register={register}
           error={errors.officer?.street}
@@ -62,7 +62,7 @@ export function DataLocation({ register, errors }: DataLocationProps) {
         <FormField<FormData>
           id="officer-hood"
           name="officer.hood"
-          label="Bairro"
+          label="Bairro *"
           placeholder="Nome do bairro"
           register={register}
           error={errors.officer?.hood}

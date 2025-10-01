@@ -1,7 +1,10 @@
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
+
 import { formSchema } from '../../types/formMaterial';
 import type { FormData } from '../../types/formMaterial';
+import { formatDate } from '../../utils/formatDate';
+
 import { DataOfficer } from './DataOfficer';
 import { DataMaterials } from './DataMaterials';
 import { DataLocation } from './DataLocation';
@@ -15,27 +18,28 @@ type FormProps = {
 function generateWhatsAppText(data: FormData) {
   const { officer, materials } = data;
 
-  let text = `📋 *Baixa de Materiais*\n\n`;
+  let text = `*BAIXA DE MATERIAIS*\n\n`;
+
+  // Data
+  text += `*DATA:* ${formatDate(officer.date)}\n`;
 
   // Técnicos
-  text += `👷 *Técnicos:*\n`;
-  text += `- ${officer.name} (Matrícula: ${officer.registration})\n`;
-  text += `- ${officer.secondName} (Matrícula: ${officer.secondRegistration})\n\n`;
+  text += `*EQUIPE:* ${officer.name} / ${officer.secondName}\n`;
+  text += `*MATRÍCULA:* ${officer.registration} / ${officer.secondRegistration}\n`;
 
   // Endereço
-  text += `🏠 *Endereço do serviço:*\n`;
-  text += `${officer.street}, ${officer.number}\n`;
-  text += `${officer.hood}, ${officer.city} - ${officer.state}\n\n`;
+  text += `*CIDADE:* ${officer.city}, ${officer.state}\n`;
+  text += `*RUA:* ${officer.street}, ${officer.number}\n`;
+  text += `*BAIRRO:* ${officer.hood}\n\n`;
 
-  // Data e atividade
-  text += `📅 *Data:* ${officer.date}\n`;
-  text += `🛠 *Atividade Realizada:* ${officer.activity}\n\n`;
+  // Atividade
+  text += `*ATIVIDADE REALIZADA:* ${officer.activity}\n\n`;
 
   // Materiais
-  text += `📦 *Materiais Utilizados:*\n`;
+  text += `*MATERIAL UTILIZADO:*\n`;
   materials.forEach((mat, i) => {
     const unitLabel = mat.unit === 'unidade' ? 'unidade(s)' : 'metro(s)';
-    text += `${i + 1}. ${mat.name} - Código: ${mat.code} - Quantidade: ${mat.quantity} ${unitLabel}\n`;
+    text += `${i + 1}. ${mat.name} - Qtd: ${mat.quantity} ${unitLabel}\n*CÓDIGO:* ${mat.code}\n\n`;
   });
 
   return text;

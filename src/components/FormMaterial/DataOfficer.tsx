@@ -36,7 +36,7 @@ export function DataOfficer({ register, errors }: DataOfficerProps) {
           <FormField<FormData>
             id="officer-name"
             name="officer.name"
-            label="Oficial I"
+            label="Oficial I *"
             placeholder="Digite o nome do técnico"
             register={register}
             required
@@ -55,7 +55,7 @@ export function DataOfficer({ register, errors }: DataOfficerProps) {
           <FormField<FormData>
             id="officer-registration"
             name="officer.registration"
-            label="Matrícula"
+            label="Matrícula *"
             placeholder="Ex: 123456"
             register={register}
             required
