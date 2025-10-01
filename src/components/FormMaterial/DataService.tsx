@@ -25,7 +25,7 @@ export function DataService({ register, errors }: DataServiceProps) {
         <FormField<FormData>
           id="officer-date"
           name="officer.date"
-          label="Data"
+          label="Data *"
           type="date"
           register={register}
           error={errors.officer?.date}

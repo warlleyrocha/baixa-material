@@ -20,19 +20,19 @@ export const materialSchema = z
 export const formSchema = z.object({
   officer: z.object({
     name: z.string().min(1, 'Nome do técnico é obrigatório'),
-    secondName: z.string().min(1, 'Nome do segundo técnico é obrigatório'),
+    secondName: z.string().optional(), //Secundo técnico opcional
     registration: z.string().min(1, 'Matrícula do técnico é obrigatória'),
-    secondRegistration: z.string().min(1, 'Matrícula do segundo técnico é obrigatória'),
+    secondRegistration: z.string().optional(),
     city: z.string().min(1, 'Cidade é obrigatória'),
     state: z
       .string()
       .length(2, 'Estado deve ter 2 caracteres')
       .transform((val) => val.toUpperCase()),
     street: z.string().min(1, 'Rua é obrigatória'),
-    number: z.string().min(1, 'Número é obrigatório'),
+    number: z.string().optional(),
     hood: z.string().min(1, 'Bairro é obrigatório'),
     date: z.string().min(1, 'Data é obrigatória'),
-    activity: z.string().min(1, 'Atividade realizada é obrigatória'),
+    activity: z.string().optional(),
   }),
   materials: z.array(materialSchema).min(1, 'Adicione pelo menos 1 material'),
 });

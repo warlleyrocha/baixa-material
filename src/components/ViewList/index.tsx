@@ -1,3 +1,5 @@
+import { formatDate } from '../../utils/formatDate';
+
 type Launch = {
   readonly id: string;
   readonly date: string; // formato ISO: yyyy-mm-dd
@@ -15,12 +17,6 @@ export function LaunchesList({ launches }: LaunchesListProps) {
   const sortedLaunches = [...launches].sort(
     (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime(),
   );
-
-  // Função para formatar data em dd/mm/yyyy
-  const formatDate = (dateStr: string) => {
-    const [year, month, day] = dateStr.split('-');
-    return `${day}/${month}/${year}`;
-  };
 
   return (
     <div className="max-w-5xl mx-auto mt-8 space-y-6">
