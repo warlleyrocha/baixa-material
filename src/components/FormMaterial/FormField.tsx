@@ -1,5 +1,6 @@
 // components/FormField.tsx
 import type { FieldError, FieldValues, Path, UseFormRegister } from 'react-hook-form';
+import { smartCapitalize } from '../../utils/textUtils';
 
 type BaseFormFieldProps<T extends FieldValues> = {
   label: string;
@@ -35,23 +36,26 @@ export function FormField<T extends FieldValues>({
     focus:outline-none focus:ring-2 focus:ring-blue-200 focus:border-blue-500
     transition-colors duration-200
     ${error ? 'border-red-400' : ''}
-    ${enableAutoCapitalize ? 'capitalize' : ''}
   `;
 
   const handleInput = (e: React.FormEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    if (enableAutoCapitalize && e.currentTarget.value) {
-      const start = e.currentTarget.selectionStart;
-      const end = e.currentTarget.selectionEnd;
+    const el = e.currentTarget;
 
-      // Capitaliza a primeira letra
-      e.currentTarget.value =
-        e.currentTarget.value.charAt(0).toUpperCase() + e.currentTarget.value.slice(1);
+    if (
+      enableAutoCapitalize &&
+      el.value &&
+      (el instanceof HTMLTextAreaElement || el.type === 'text')
+    ) {
+      const start = el.selectionStart ?? el.value.length;
+      const end = el.selectionEnd ?? el.value.length;
 
-      // Restaura a posição do cursor
-      e.currentTarget.setSelectionRange(start, end);
+      el.value = smartCapitalize(el.value);
+
+      if (typeof el.setSelectionRange === 'function') {
+        el.setSelectionRange(start, end);
+      }
     }
 
-    // Chama o onInput original se existir
     if (props.onInput) {
       props.onInput(e as any);
     }
