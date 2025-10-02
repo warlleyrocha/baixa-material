@@ -9,6 +9,7 @@ type SelectFieldProps<T extends FieldValues> = Readonly<{
   error?: FieldError;
   options: { value: string; label: string }[];
   className?: string;
+  labelClassName?: string;
 }> &
   React.SelectHTMLAttributes<HTMLSelectElement>;
 
@@ -20,11 +21,16 @@ export function SelectField<T extends FieldValues>({
   error,
   options,
   className = '',
+  labelClassName = '',
+
   ...props
 }: SelectFieldProps<T>) {
   return (
     <div className={`flex flex-col ${className}`}>
-      <label htmlFor={id} className="text-gray-700 font-medium mb-2">
+      <label
+        htmlFor={id}
+        className={`text-gray-700 text-[14px] font-medium mb-2 ${labelClassName}`}
+      >
         {label}
       </label>
       <select

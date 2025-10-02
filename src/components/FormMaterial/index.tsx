@@ -34,7 +34,7 @@ export function Form({ onNewLaunch }: FormProps) {
         registration: '',
         secondRegistration: '',
         city: '',
-        state: '',
+        state: 'MG',
         street: '',
         number: '',
         hood: '',

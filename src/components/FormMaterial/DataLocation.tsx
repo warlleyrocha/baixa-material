@@ -2,6 +2,8 @@ import { FormField } from './FormField';
 import type { FormData } from '../../types/formMaterial';
 import type { FieldErrors, UseFormRegister } from 'react-hook-form';
 import { TfiLocationPin } from 'react-icons/tfi';
+import { SelectField } from './SelectField';
+import { brazilStates } from '../../utils/statesUtils';
 
 type DataLocationProps = {
   readonly register: UseFormRegister<FormData>;
@@ -30,12 +32,11 @@ export function DataLocation({ register, errors }: DataLocationProps) {
           register={register}
           error={errors.officer?.city}
         />
-        <FormField<FormData>
+        <SelectField<FormData>
           id="officer-state"
           name="officer.state"
           label="Estado *"
-          placeholder="Ex: SP"
-          maxLength={2}
+          options={brazilStates}
           register={register}
           error={errors.officer?.state}
         />
