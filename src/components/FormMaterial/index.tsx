@@ -101,7 +101,7 @@ export function Form({ onNewLaunch }: FormProps) {
             type="submit"
             disabled={!isValid}
             className={`h-12 px-6 rounded-xl font-medium transition-colors text-white ${
-              isValid ? 'bg-blue-600 hover:bg-blue-700' : 'bg-gray-300 cursor-not-allowed'
+              isValid ? 'bg-[#302b4b] hover:bg-[#4a3f6b]' : 'bg-gray-300 cursor-not-allowed'
             }`}
           >
             {isValid ? 'Gerar Texto WhatsApp' : 'Preencha todos os campos'}

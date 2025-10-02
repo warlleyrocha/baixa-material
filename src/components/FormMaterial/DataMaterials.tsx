@@ -78,7 +78,7 @@ export function DataMaterials({ register, errors, control }: DataMaterialsProps)
                 <CollapsibleTrigger asChild>
                   <div className="flex justify-between items-center p-4 bg-[#f0f6ff] border border-white/20 rounded-xl cursor-pointer shadow">
                     <div className="flex items-center space-x-2">
-                      <BsBoxSeam color="blue" />
+                      <BsBoxSeam color="#302b4b" />
                       <h3 className="text-md font-semibold text-gray-900">
                         {materialValues[index]?.name
                           ? materialValues[index].name
@@ -143,7 +143,7 @@ export function DataMaterials({ register, errors, control }: DataMaterialsProps)
               <button
                 type="button"
                 onClick={handleAppend}
-                className="w-[120px] h-[36px] sm:w-auto sm:h-auto sm:px-4 sm:py-2 bg-blue-600 text-white rounded-xl hover:bg-blue-700 transition-colors flex items-center justify-center text-md sm:text-base font-semibold"
+                className="w-[120px] h-[36px] sm:w-auto sm:h-auto sm:px-4 sm:py-2 bg-[#302b4b] text-white rounded-xl hover:bg-[#4a3f6b] transition-colors flex items-center justify-center text-md sm:text-base font-semibold"
               >
                 <span className="sm:hidden">+</span>
                 <span className="hidden sm:flex sm:items-center">+ Adicionar Material</span>

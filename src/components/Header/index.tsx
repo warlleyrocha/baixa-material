@@ -14,10 +14,10 @@ export function Header({
   const navigate = useNavigate();
 
   return (
-    <header className="relative overflow-hidden bg-gradient-to-r from-indigo-500 to-purple-600 shadow-md border-b border-transparent">
+    <header className="relative overflow-hidden bg-gradient-to-r from-[#302b4b] to-[#b00000] shadow-md border-b border-transparent">
       {/* Bolas de fundo */}
-      <div className="absolute -top-16 -left-16 h-52 w-52 rounded-full bg-indigo-400 opacity-30"></div>
-      <div className="absolute -bottom-16 -right-16 h-72 w-72 rounded-full bg-purple-400 opacity-30"></div>
+      <div className="absolute -top-16 -left-16 h-52 w-52 rounded-full bg-[#4a3f6b] opacity-30"></div>
+      <div className="absolute -bottom-16 -right-16 h-72 w-72 rounded-full bg-[#d63333] opacity-30"></div>
 
       {/* Conteúdo */}
       <div className="relative z-10 max-w-6xl mx-auto px-6 py-8 flex justify-between items-center">
