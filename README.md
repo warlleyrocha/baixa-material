@@ -101,11 +101,9 @@ yarn preview
 2. **Visualizar Histórico**
    - Navegue até a seção de visualização
    - Consulte o histórico completo de materiais utilizados
-   - Filtre ou pesquise conforme necessário
 
 3. **Gerenciar Dados**
    - Os dados são automaticamente salvos no navegador
-   - Para limpar dados, utilize as opções disponíveis na interface
 
 ## 🔧 Scripts Disponíveis
 
@@ -152,13 +150,9 @@ O projeto utiliza **Zod 4.1** para validação de schemas, garantindo:
 4. Push para a branch (`git push origin feature/nova-funcionalidade`)
 5. Abra um Pull Request
 
-## 📝 Licença
-
-Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
-
 ## 📧 Contato
 
-Para dúvidas ou sugestões, entre em contato através de [seu-email@exemplo.com]
+Para dúvidas ou sugestões, entre em contato através de [warlleyrocha@icloud.com]
 
 ---
 
