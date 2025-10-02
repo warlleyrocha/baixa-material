@@ -1,7 +1,7 @@
 // components/FormField.tsx
 import type { FieldError, FieldValues, Path, UseFormRegister } from 'react-hook-form';
 
-type FormFieldProps<T extends FieldValues> = Readonly<{
+type BaseFormFieldProps<T extends FieldValues> = {
   label: string;
   id: string;
   name: Path<T>;
@@ -9,9 +9,13 @@ type FormFieldProps<T extends FieldValues> = Readonly<{
   error?: FieldError;
   className?: string;
   registerOptions?: Parameters<UseFormRegister<T>>[1];
-  multiline?: boolean; // Nova prop para textarea
-}> &
-  (React.InputHTMLAttributes<HTMLInputElement> | React.TextareaHTMLAttributes<HTMLTextAreaElement>);
+  multiline?: boolean;
+  enableAutoCapitalize?: boolean; // Renomeado para evitar conflito
+};
+
+type FormFieldProps<T extends FieldValues> = BaseFormFieldProps<T> &
+  Omit<React.InputHTMLAttributes<HTMLInputElement>, keyof BaseFormFieldProps<T>> &
+  Omit<React.TextareaHTMLAttributes<HTMLTextAreaElement>, keyof BaseFormFieldProps<T>>;
 
 export function FormField<T extends FieldValues>({
   label,
@@ -22,6 +26,7 @@ export function FormField<T extends FieldValues>({
   className = '',
   registerOptions,
   multiline = false,
+  enableAutoCapitalize = true, // Renomeado
   ...props
 }: FormFieldProps<T>) {
   const baseClasses = `
@@ -30,7 +35,29 @@ export function FormField<T extends FieldValues>({
     focus:outline-none focus:ring-2 focus:ring-blue-200 focus:border-blue-500
     transition-colors duration-200
     ${error ? 'border-red-400' : ''}
+    ${enableAutoCapitalize ? 'capitalize' : ''}
   `;
+
+  const handleInput = (e: React.FormEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    if (enableAutoCapitalize && e.currentTarget.value) {
+      const start = e.currentTarget.selectionStart;
+      const end = e.currentTarget.selectionEnd;
+
+      // Capitaliza a primeira letra
+      e.currentTarget.value =
+        e.currentTarget.value.charAt(0).toUpperCase() + e.currentTarget.value.slice(1);
+
+      // Restaura a posição do cursor
+      e.currentTarget.setSelectionRange(start, end);
+    }
+
+    // Chama o onInput original se existir
+    if (props.onInput) {
+      props.onInput(e as any);
+    }
+  };
+
+  const registeredField = register(name, registerOptions);
 
   return (
     <div className={`flex flex-col ${className}`}>
@@ -40,16 +67,18 @@ export function FormField<T extends FieldValues>({
       {multiline ? (
         <textarea
           id={id}
-          {...register(name, registerOptions)}
+          {...registeredField}
           {...(props as React.TextareaHTMLAttributes<HTMLTextAreaElement>)}
           rows={4}
+          onInput={handleInput}
           className={`${baseClasses} resize-vertical min-h-[100px]`}
         />
       ) : (
         <input
           id={id}
-          {...register(name, registerOptions)}
+          {...registeredField}
           {...(props as React.InputHTMLAttributes<HTMLInputElement>)}
+          onInput={handleInput}
           className={baseClasses}
         />
       )}
