@@ -34,7 +34,7 @@ export function Form({ onNewLaunch }: FormProps) {
         registration: '',
         secondRegistration: '',
         city: '',
-        state: '',
+        state: 'MG',
         street: '',
         number: '',
         hood: '',
@@ -76,7 +76,7 @@ export function Form({ onNewLaunch }: FormProps) {
   };
 
   return (
-    <div className="w-full max-w-5xl mx-auto mt-8 rounded-2xl ">
+    <div className="w-full max-w-5xl mx-auto mt-8 rounded-2xl">
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-10">
         {/* Dados do técnico */}
         <DataOfficer register={register} errors={errors} />
@@ -91,7 +91,7 @@ export function Form({ onNewLaunch }: FormProps) {
         <DataMaterials register={register} errors={errors} control={control} />
 
         {/* Botão de submissão */}
-        <div className="flex justify-end bg-[#f4f9fd]/80 backdrop-blur-sm rounded-2xl shadow-xl border-0 p-6 space-y-6 transform hover:scale-[1.01] transition-all duration-300">
+        <div className="flex justify-center bg-[#f4f9fd]/80 backdrop-blur-sm rounded-2xl shadow border-0 p-6 space-y-6 transform hover:scale-[1.01] transition-all duration-300 hover:shadow-lg">
           {error && (
             <div className="mb-4 p-4 bg-red-50 border border-red-200 rounded-lg text-red-700">
               {error}
@@ -101,7 +101,7 @@ export function Form({ onNewLaunch }: FormProps) {
             type="submit"
             disabled={!isValid}
             className={`h-12 px-6 rounded-xl font-medium transition-colors text-white ${
-              isValid ? 'bg-blue-600 hover:bg-blue-700' : 'bg-gray-300 cursor-not-allowed'
+              isValid ? 'bg-[#302b4b] hover:bg-[#4a3f6b]' : 'bg-gray-300 cursor-not-allowed'
             }`}
           >
             {isValid ? 'Gerar Texto WhatsApp' : 'Preencha todos os campos'}

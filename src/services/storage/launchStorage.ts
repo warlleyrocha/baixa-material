@@ -5,11 +5,16 @@ export interface Launch {
   id: string;
   date: string;
   activity: string | undefined;
+  city: string;
+  street: string;
+  number: string | undefined;
   officers: Array<{
+    id: string;
     name: string | undefined;
     registration: string | undefined;
   }>;
   materials: Array<{
+    id: string;
     name: string;
     code: string;
     unit: string;
@@ -36,21 +41,45 @@ export function getLaunches(): Launch[] {
  * Converte dados do formulário para o formato Launch
  */
 export function createLaunchFromFormData(data: FormData): Launch {
+  const now = new Date();
+
+  // Combina a data informada no form com a hora atual
+  const [year, month, day] = data.officer.date.split('-');
+  const dateWithTime = new Date(
+    Number(year),
+    Number(month) - 1,
+    Number(day),
+    now.getHours(),
+    now.getMinutes(),
+    now.getSeconds(),
+  );
   return {
     id: crypto.randomUUID(),
-    date: data.officer.date,
+    date: dateWithTime.toISOString(), // ISO com hora
     activity: data.officer.activity,
+    city: data.officer.city,
+    street: data.officer.street,
+    number: data.officer.number,
     officers: [
       {
+        id: crypto.randomUUID(),
         name: data.officer.name,
         registration: data.officer.registration,
       },
-      {
-        name: data.officer.secondName,
-        registration: data.officer.secondRegistration,
-      },
+      ...(data.officer.secondName
+        ? [
+            {
+              id: crypto.randomUUID(),
+              name: data.officer.secondName,
+              registration: data.officer.secondRegistration!,
+            },
+          ]
+        : []),
     ],
-    materials: data.materials,
+    materials: data.materials.map((mat) => ({
+      id: crypto.randomUUID(),
+      ...mat, // unit e quantity permanecem intactos
+    })),
   };
 }
 
