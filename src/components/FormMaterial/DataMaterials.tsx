@@ -40,7 +40,7 @@ export function DataMaterials({ register, errors, control }: DataMaterialsProps)
   };
 
   return (
-    <div className="bg-[#eff5ff]/80 backdrop-blur-sm rounded-2xl shadow border-0 pt-6 transform hover:scale-[1.01] transition-all duration-300">
+    <div className="bg-[#eff5ff]/80 backdrop-blur-sm rounded-2xl shadow border-0 pt-6 transform hover:scale-[1.01] transition-all duration-300 hover:shadow-lg">
       {/* Cabeçalho da seção */}
       <div className="flex justify-between items-center px-8">
         <h2 className="flex items-center space-x-2 text-xl font-semibold text-gray-900">

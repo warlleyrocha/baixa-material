@@ -12,7 +12,7 @@ type DataLocationProps = {
 
 export function DataLocation({ register, errors }: DataLocationProps) {
   return (
-    <div className="bg-[#f4f9fd]/80 backdrop-blur-sm rounded-2xl shadow border-0 p-6 space-y-6 transform hover:scale-[1.01] transition-all duration-300">
+    <div className="bg-[#f4f9fd]/80 backdrop-blur-sm rounded-2xl shadow border-0 p-6 space-y-6 transform hover:scale-[1.01] transition-all duration-300 hover:shadow-lg">
       <div className="pb-4">
         <h2 className="flex items-center space-x-2 text-xl font-semibold text-gray-900">
           <div className="w-6 h-6 text-blue-600">

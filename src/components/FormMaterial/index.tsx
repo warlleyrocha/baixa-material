@@ -76,7 +76,7 @@ export function Form({ onNewLaunch }: FormProps) {
   };
 
   return (
-    <div className="w-full max-w-5xl mx-auto mt-8 rounded-2xl ">
+    <div className="w-full max-w-5xl mx-auto mt-8 rounded-2xl">
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-10">
         {/* Dados do técnico */}
         <DataOfficer register={register} errors={errors} />
@@ -91,7 +91,7 @@ export function Form({ onNewLaunch }: FormProps) {
         <DataMaterials register={register} errors={errors} control={control} />
 
         {/* Botão de submissão */}
-        <div className="flex justify-center bg-[#f4f9fd]/80 backdrop-blur-sm rounded-2xl shadow border-0 p-6 space-y-6 transform hover:scale-[1.01] transition-all duration-300">
+        <div className="flex justify-center bg-[#f4f9fd]/80 backdrop-blur-sm rounded-2xl shadow border-0 p-6 space-y-6 transform hover:scale-[1.01] transition-all duration-300 hover:shadow-lg">
           {error && (
             <div className="mb-4 p-4 bg-red-50 border border-red-200 rounded-lg text-red-700">
               {error}
