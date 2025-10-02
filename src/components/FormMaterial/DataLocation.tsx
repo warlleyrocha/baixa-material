@@ -53,6 +53,7 @@ export function DataLocation({ register, errors }: DataLocationProps) {
           id="officer-number"
           name="officer.number"
           label="Número"
+          maxLength={5}
           placeholder="Ex: 123"
           register={register}
           error={errors.officer?.number}

@@ -86,6 +86,7 @@ export function DataMaterials({ register, errors, control }: DataMaterialsProps)
                     name={`materials.${index}.code`}
                     label="Código"
                     placeholder="Ex: CB001"
+                    maxLength={12}
                     register={register}
                     error={errors.materials?.[index]?.code}
                   />

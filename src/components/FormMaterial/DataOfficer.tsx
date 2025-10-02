@@ -56,6 +56,7 @@ export function DataOfficer({ register, errors }: DataOfficerProps) {
             id="officer-registration"
             name="officer.registration"
             label="Matrícula *"
+            maxLength={10}
             placeholder="Ex: 123456"
             register={register}
             required
@@ -65,6 +66,7 @@ export function DataOfficer({ register, errors }: DataOfficerProps) {
             id="officer-second-registration"
             name="officer.secondRegistration"
             label="Matrícula do Segundo Técnico"
+            maxLength={10}
             placeholder="Ex: 654321"
             register={register}
             error={errors.officer?.secondRegistration}
