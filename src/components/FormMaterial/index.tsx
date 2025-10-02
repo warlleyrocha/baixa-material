@@ -1,9 +1,11 @@
 import { useForm } from 'react-hook-form';
+import { useState } from 'react';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { generateWhatsAppText } from '../../services/whatsapp/generateWhatsAppText';
+import { saveLaunchFromForm } from '../../services/storage/launchStorage';
 
 import { formSchema } from '../../types/formMaterial';
 import type { FormData } from '../../types/formMaterial';
-import { formatDate } from '../../utils/formatDate';
 
 import { DataOfficer } from './DataOfficer';
 import { DataMaterials } from './DataMaterials';
@@ -14,38 +16,9 @@ type FormProps = {
   readonly onNewLaunch?: (launch: any) => void;
 };
 
-// Função que gera o texto completo e organizado para WhatsApp
-function generateWhatsAppText(data: FormData) {
-  const { officer, materials } = data;
-
-  let text = `*BAIXA DE MATERIAIS*\n\n`;
-
-  // Data
-  text += `*DATA:* ${formatDate(officer.date)}\n`;
-
-  // Técnicos
-  text += `*EQUIPE:* ${officer.name} / ${officer.secondName}\n`;
-  text += `*MATRÍCULA:* ${officer.registration} / ${officer.secondRegistration}\n`;
-
-  // Endereço
-  text += `*CIDADE:* ${officer.city}, ${officer.state}\n`;
-  text += `*RUA:* ${officer.street}, ${officer.number}\n`;
-  text += `*BAIRRO:* ${officer.hood}\n\n`;
-
-  // Atividade
-  text += `*ATIVIDADE REALIZADA:* ${officer.activity}\n\n`;
-
-  // Materiais
-  text += `*MATERIAL UTILIZADO:*\n`;
-  materials.forEach((mat, i) => {
-    const unitLabel = mat.unit === 'unidade' ? 'unidade(s)' : 'metro(s)';
-    text += `${i + 1}. ${mat.name} - Qtd: ${mat.quantity} ${unitLabel}\n*CÓDIGO:* ${mat.code}\n\n`;
-  });
-
-  return text;
-}
-
 export function Form({ onNewLaunch }: FormProps) {
+  const [error, setError] = useState<string | null>(null);
+
   const {
     register,
     handleSubmit,
@@ -74,34 +47,32 @@ export function Form({ onNewLaunch }: FormProps) {
   });
 
   const onSubmit = (data: FormData) => {
+    setError(null);
+
     const text = generateWhatsAppText(data);
 
     // Copiar texto para o clipboard
     navigator.clipboard
       .writeText(text)
       .then(() => alert('Texto copiado para o WhatsApp!'))
-      .catch(() => alert('Erro ao copiar o texto'));
+      .catch((err) => {
+        console.error('Erro ao copiar:', err);
+        alert('Erro ao copiar o texto');
+      });
 
-    // Salvar no localStorage em formato compatível com LaunchesList
-    const newLaunch = {
-      id: crypto.randomUUID(),
-      date: data.officer.date,
-      activity: data.officer.activity,
-      officers: [
-        { name: data.officer.name, registration: data.officer.registration },
-        { name: data.officer.secondName, registration: data.officer.secondRegistration },
-      ],
-      materials: data.materials,
-    };
+    // Salvar no localStorage
+    try {
+      const newLaunch = saveLaunchFromForm(data);
 
-    const savedLaunches = JSON.parse(localStorage.getItem('launches') || '[]');
-    savedLaunches.push(newLaunch);
-    localStorage.setItem('launches', JSON.stringify(savedLaunches));
+      onNewLaunch?.(newLaunch);
 
-    // Atualizar estado no App
-    if (onNewLaunch) onNewLaunch(newLaunch);
+      reset();
+    } catch (error) {
+      console.error('Erro ao salvar dados: ', error);
+      const errorMessage = error instanceof Error ? error.message : 'Erro ao salvar dados';
 
-    reset();
+      setError(errorMessage); // Mostra na UI
+    }
   };
 
   return (
@@ -121,6 +92,11 @@ export function Form({ onNewLaunch }: FormProps) {
 
         {/* Botão de submissão */}
         <div className="flex justify-end bg-[#f4f9fd]/80 backdrop-blur-sm rounded-2xl shadow-xl border-0 p-6 space-y-6 transform hover:scale-[1.01] transition-all duration-300">
+          {error && (
+            <div className="mb-4 p-4 bg-red-50 border border-red-200 rounded-lg text-red-700">
+              {error}
+            </div>
+          )}
           <button
             type="submit"
             disabled={!isValid}
