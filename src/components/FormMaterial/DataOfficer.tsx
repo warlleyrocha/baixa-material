@@ -9,7 +9,7 @@ type DataOfficerProps = {
 
 export function DataOfficer({ register, errors }: DataOfficerProps) {
   return (
-    <div className="bg-[#f4f9fd]/80 backdrop-blur-sm rounded-2xl shadow-xl border-0 p-6 pt-1 space-y-6 transform hover:scale-[1.01] transition-all duration-300">
+    <div className="bg-[#f4f9fd]/80 backdrop-blur-sm rounded-2xl shadow border-0 p-6 pt-1 space-y-6 transform hover:scale-[1.01] transition-all duration-300">
       <div className="pb-4">
         <h2 className="flex items-center space-x-2 text-xl font-semibold text-gray-900">
           <div className="w-6 h-6 text-blue-600">
