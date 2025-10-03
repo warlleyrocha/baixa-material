@@ -89,12 +89,12 @@ export function DataMaterials({ register, errors, control }: DataMaterialsProps)
                   </div>
                 </CollapsibleTrigger>
 
-                <CollapsibleContent>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4 p-4 bg-[#f0f6ff]/80 rounded-xl border border-white/20 shadow">
+                <CollapsibleContent className="overflow-hidden data-[state=open]:animate-collapsible-down data-[state=closed]:animate-collapsible-up">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4 p-4 bg-[#f0f6ff]/80 rounded-xl border border-white/20 shadow ">
                     <FormField<FormData>
                       id={`material-name-${index}`}
                       name={`materials.${index}.name`}
-                      label="Nome do Material"
+                      label="Nome do Material *"
                       placeholder="Ex: Cabo de rede"
                       register={register}
                       error={errors.materials?.[index]?.name}
@@ -113,7 +113,7 @@ export function DataMaterials({ register, errors, control }: DataMaterialsProps)
                     <SelectField<FormData>
                       id={`material-unit-${index}`}
                       name={`materials.${index}.unit`}
-                      label="Unidade"
+                      label="Unidade *"
                       register={register}
                       error={errors.materials?.[index]?.unit}
                       options={[
@@ -125,7 +125,7 @@ export function DataMaterials({ register, errors, control }: DataMaterialsProps)
                     <FormField<FormData>
                       id={`material-quantity-${index}`}
                       name={`materials.${index}.quantity`}
-                      label="Quantidade"
+                      label="Quantidade *"
                       type="number"
                       min={field.unit === 'unidade' ? 1 : 0.01}
                       step={field.unit === 'unidade' ? 1 : 0.01}
@@ -139,7 +139,7 @@ export function DataMaterials({ register, errors, control }: DataMaterialsProps)
               </Collapsible>
             ))}
 
-            <div className="flex justify-center mt-4">
+            <div className="flex justify-center pt-[20px]">
               <button
                 type="button"
                 onClick={handleAppend}

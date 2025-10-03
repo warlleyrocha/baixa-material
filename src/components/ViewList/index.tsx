@@ -111,7 +111,7 @@ export function LaunchesList({ launches }: LaunchesListProps) {
                 </div>
               </CollapsibleTrigger>
 
-              <CollapsibleContent>
+              <CollapsibleContent className="overflow-hidden data-[state=open]:animate-collapsible-down data-[state=closed]:animate-collapsible-up">
                 <div className="px-5 pb-5 pt-2 space-y-5 border-t border-gray-100">
                   {/* Técnicos */}
                   <div>
