@@ -16,7 +16,7 @@ export interface Launch {
   materials: Array<{
     id: string;
     name: string;
-    code: string;
+    code?: string;
     unit: string;
     quantity: number;
   }>;
