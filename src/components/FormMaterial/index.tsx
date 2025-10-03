@@ -1,16 +1,17 @@
 import { useForm } from 'react-hook-form';
 import { useState } from 'react';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { generateWhatsAppText } from '../../services/whatsapp/generateWhatsAppText';
-import { saveLaunchFromForm } from '../../services/storage/launchStorage';
+import { generateWhatsAppText } from '@/services/whatsapp/generateWhatsAppText';
+import { saveLaunchFromForm } from '@/services/storage/launchStorage';
 
-import { formSchema } from '../../types/formMaterial';
-import type { FormData } from '../../types/formMaterial';
+import { formSchema } from '@/types/formMaterial';
+import type { FormData } from '@/types/formMaterial';
 
-import { DataOfficer } from './DataOfficer';
-import { DataMaterials } from './DataMaterials';
-import { DataLocation } from './DataLocation';
-import { DataService } from './DataService';
+import { DataOfficer } from '@/components/FormMaterial/DataOfficer';
+import { DataMaterials } from '@/components/FormMaterial/DataMaterials';
+import { DataLocation } from '@/components/FormMaterial/DataLocation';
+import { DataService } from '@/components/FormMaterial/DataService';
+import { SuccessFeedback } from '@/components/SuccessFeedback';
 
 type FormProps = {
   readonly onNewLaunch?: (launch: any) => void;
@@ -18,6 +19,7 @@ type FormProps = {
 
 export function Form({ onNewLaunch }: FormProps) {
   const [error, setError] = useState<string | null>(null);
+  const [showSuccess, setShowSuccess] = useState(false);
 
   const {
     register,
@@ -52,27 +54,20 @@ export function Form({ onNewLaunch }: FormProps) {
     const text = generateWhatsAppText(data);
 
     // Copiar texto para o clipboard
-    navigator.clipboard
-      .writeText(text)
-      .then(() => alert('Texto copiado para o WhatsApp!'))
-      .catch((err) => {
-        console.error('Erro ao copiar:', err);
-        alert('Erro ao copiar o texto');
-      });
+    navigator.clipboard.writeText(text).then(() => {
+      // Salvar no localStorage
+      try {
+        const newLaunch = saveLaunchFromForm(data);
+        onNewLaunch?.(newLaunch);
 
-    // Salvar no localStorage
-    try {
-      const newLaunch = saveLaunchFromForm(data);
-
-      onNewLaunch?.(newLaunch);
-
-      reset();
-    } catch (error) {
-      console.error('Erro ao salvar dados: ', error);
-      const errorMessage = error instanceof Error ? error.message : 'Erro ao salvar dados';
-
-      setError(errorMessage); // Mostra na UI
-    }
+        setShowSuccess(true);
+        reset();
+      } catch (error) {
+        console.error('Erro ao salvar dados: ', error);
+        const errorMessage = error instanceof Error ? error.message : 'Erro ao salvar dados';
+        setError(errorMessage);
+      }
+    });
   };
 
   return (
@@ -108,6 +103,9 @@ export function Form({ onNewLaunch }: FormProps) {
           </button>
         </div>
       </form>
+
+      {/* Feedback de Sucesso */}
+      <SuccessFeedback isVisible={showSuccess} onClose={() => setShowSuccess(false)} />
 
       <footer className="mt-[20px] text-center text-sm text-gray-500 pt-6">
         Desenvolvido por{' '}
