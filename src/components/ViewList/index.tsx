@@ -26,7 +26,7 @@ export type Launch = {
   materials: {
     id: string;
     name: string;
-    code: string;
+    code?: string;
     unit: 'unidade' | 'metro';
     quantity: number;
   }[];

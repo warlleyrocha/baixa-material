@@ -33,7 +33,7 @@ export const formSchema = z.object({
       .length(2, 'Estado deve ter 2 caracteres')
       .transform((val) => val.toUpperCase()),
     street: z.string().min(1, 'Rua é obrigatória'),
-    number: z.string().max(5, 'Número da rua deve ter no máximo 5 caracteres').optional(), // Numero da rua opcional
+    number: z.string().max(5, 'Número da rua deve ter no máximo 5 caracteres').optional(), // Número da rua opcional
     hood: z.string().min(1, 'Bairro é obrigatório'),
     date: z.string().min(1, 'Data é obrigatória'),
     activity: z.string().optional(),
