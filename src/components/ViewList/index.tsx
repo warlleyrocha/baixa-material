@@ -161,7 +161,7 @@ export function LaunchesList({ launches }: LaunchesListProps) {
                               } hover:bg-gray-50 transition-colors`}
                             >
                               <td className="p-3 text-gray-700">{mat.name}</td>
-                              <td className="p-3 text-gray-600">{mat.code}</td>
+                              <td className="p-3 text-gray-600">{mat.code ?? '-'}</td>
                               <td className="p-3 text-right text-gray-700 font-medium">
                                 {mat.quantity}
                               </td>

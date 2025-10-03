@@ -54,20 +54,26 @@ export function Form({ onNewLaunch }: FormProps) {
     const text = generateWhatsAppText(data);
 
     // Copiar texto para o clipboard
-    navigator.clipboard.writeText(text).then(() => {
-      // Salvar no localStorage
-      try {
-        const newLaunch = saveLaunchFromForm(data);
-        onNewLaunch?.(newLaunch);
+    navigator.clipboard
+      .writeText(text)
+      .then(() => {
+        // Salvar no localStorage
+        try {
+          const newLaunch = saveLaunchFromForm(data);
+          onNewLaunch?.(newLaunch);
 
-        setShowSuccess(true);
-        reset();
-      } catch (error) {
-        console.error('Erro ao salvar dados: ', error);
-        const errorMessage = error instanceof Error ? error.message : 'Erro ao salvar dados';
-        setError(errorMessage);
-      }
-    });
+          setShowSuccess(true);
+          reset();
+        } catch (error) {
+          console.error('Erro ao salvar dados: ', error);
+          const errorMessage = error instanceof Error ? error.message : 'Erro ao salvar dados';
+          setError(errorMessage);
+        }
+      })
+      .catch((clipboardError) => {
+        console.error('Erro ao copiar texto para o clipboard: ', clipboardError);
+        setError('Erro ao copiar texto para o clipboard. Por favor, tente novamente.');
+      });
   };
 
   return (
