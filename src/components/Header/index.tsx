@@ -1,16 +1,13 @@
 import { useNavigate } from 'react-router-dom';
-import { FiFileText } from 'react-icons/fi';
-import { FaArrowRotateLeft } from 'react-icons/fa6';
+
+import FFALogo from '@/assets/logoFFA.png';
 
 type HeaderProps = {
   readonly title: string;
   readonly subtitle?: string;
 };
 
-export function Header({
-  title,
-  subtitle = 'Sistema moderno de gestão de relatórios',
-}: HeaderProps) {
+export function Header({ title, subtitle }: HeaderProps) {
   const navigate = useNavigate();
 
   return (
@@ -26,25 +23,16 @@ export function Header({
           <button
             type="button"
             onClick={() => navigate('/')}
-            className="bg-white/25 p-4 cursor-pointer rounded-lg flex items-center justify-center hover:bg-white/30 transition-colors"
+            className="bg-white/25 cursor-pointer rounded-lg px-2 flex items-center justify-center hover:bg-white/30 transition-colors"
             aria-label="Ir para Home"
           >
-            <FiFileText size={24} className="text-white" />
+            <img src={FFALogo} alt="FFA Logo" className="w-[80px] h-[80px] object-contain" />
           </button>
-          <div className="flex flex-col">
+          <div className="flex flex-col space-y-2">
             <h1 className="text-2xl md:text-3xl font-semibold text-white">{title}</h1>
             <p className="text-sm md:text-base text-white/75">{subtitle}</p>
           </div>
         </div>
-
-        <button
-          type="button"
-          className="hover:bg-white/20 transition-colors bg-white/25 p-2 rounded-lg flex items-center justify-center"
-          onClick={() => navigate('/launches')}
-          aria-label="Voltar"
-        >
-          <FaArrowRotateLeft size={20} className="text-white" />
-        </button>
       </div>
     </header>
   );
