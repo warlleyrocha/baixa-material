@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import Header from './components/Header';
-import { Form } from './pages/Baixa';
-import { LaunchesList } from './pages/ViewList';
-import { RequestMaterial } from './pages/RequestMaterial';
+import { MaterialRegister } from './pages/MaterialRegister';
+import { MaterialHistory } from './pages/MaterialHistory';
+import { RequestMaterial } from './pages/MaterialRequisition';
 import Home from './pages/Home';
 
 function AppContent() {
@@ -24,16 +24,16 @@ function AppContent() {
 
   // Titles
   const routeTitles: Record<string, string> = {
-    '/form-baixa-material': 'Baixa de Material',
-    '/request-material': 'Requisição de Material',
-    '/launches': 'Histórico de Baixas',
+    '/material-register': 'Baixa de Material',
+    '/material-requisition': 'Requisição de Material',
+    '/history': 'Histórico de Baixas',
   };
 
   //Subtitles
   const routeSubtitles: Record<string, string> = {
-    '/form-baixa-material': 'Registrar materiais utilizados',
-    '/request-material': 'Solicitar novos materiais',
-    '/launches': 'Consultar registros anteriores',
+    '/material-register': 'Registrar materiais utilizados',
+    '/material-requisition': 'Solicitar novos materiais',
+    '/history': 'Consultar registros anteriores',
   };
 
   // Define o título com base na rota atual
@@ -46,9 +46,12 @@ function AppContent() {
       <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 pt-[4px] px-[16px] pb-[8px]">
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/form-baixa-material" element={<Form onNewLaunch={handleNewLaunch} />} />
-          <Route path="/request-material" element={<RequestMaterial />} />
-          <Route path="/launches" element={<LaunchesList launches={launches} />} />
+          <Route
+            path="/material-register"
+            element={<MaterialRegister onNewLaunch={handleNewLaunch} />}
+          />
+          <Route path="/material-requisition" element={<RequestMaterial />} />
+          <Route path="/history" element={<MaterialHistory launches={launches} />} />
         </Routes>
 
         <footer className="mt-[20px] text-center text-sm text-gray-500 pt-6">

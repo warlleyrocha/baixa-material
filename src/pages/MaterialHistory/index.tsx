@@ -36,7 +36,7 @@ type LaunchesListProps = {
   readonly launches: Launch[];
 };
 
-export function LaunchesList({ launches }: LaunchesListProps) {
+export function MaterialHistory({ launches }: LaunchesListProps) {
   const [openItems, setOpenItems] = useState<Set<string>>(new Set());
 
   const sortedLaunches = [...launches].sort(

@@ -29,7 +29,7 @@ const defaultValues: FormData = {
   materials: [{ name: '', code: '', unit: 'unidade', quantity: 1 }],
 };
 
-export function Form({ onNewLaunch }: FormProps) {
+export function MaterialRegister({ onNewLaunch }: FormProps) {
   const handleSubmit = async (data: FormData) => {
     const text = generateWhatsAppText(data);
     await navigator.clipboard.writeText(text);
@@ -42,7 +42,7 @@ export function Form({ onNewLaunch }: FormProps) {
       schema={formSchema}
       defaultValues={defaultValues}
       onSubmit={handleSubmit}
-      submitButtonText="Gerar Texto WhatsApp"
+      submitButtonText="Exportar Mensagem"
     >
       {({ register, errors, control }) => (
         <>
@@ -57,4 +57,4 @@ export function Form({ onNewLaunch }: FormProps) {
 }
 
 // Exportação default para manter compatibilidade
-export default Form;
+export default MaterialRegister;

@@ -29,7 +29,7 @@ export function RequestMaterial() {
       schema={requestSchema}
       defaultValues={defaultValues}
       onSubmit={handleSubmit}
-      submitButtonText="Gerar Requisição"
+      submitButtonText="Exportar Mensagem"
     >
       {({ register, errors, control }) => (
         <>
