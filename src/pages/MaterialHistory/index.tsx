@@ -36,7 +36,7 @@ type LaunchesListProps = {
   readonly launches: Launch[];
 };
 
-export function LaunchesList({ launches }: LaunchesListProps) {
+export function MaterialHistory({ launches }: LaunchesListProps) {
   const [openItems, setOpenItems] = useState<Set<string>>(new Set());
 
   const sortedLaunches = [...launches].sort(
@@ -64,7 +64,7 @@ export function LaunchesList({ launches }: LaunchesListProps) {
   }
 
   return (
-    <div className="max-w-6xl mx-auto mt-8 space-y-4">
+    <div className="max-w-6xl mx-auto mt-8 space-y-4 min-h-screen">
       {sortedLaunches.map((launch) => {
         const launchDate = new Date(launch.date);
         const formattedDate = formatDateForLaunch(launch.date);
@@ -155,7 +155,7 @@ export function LaunchesList({ launches }: LaunchesListProps) {
                             <tr
                               key={mat.id}
                               className={`${
-                                index !== launch.materials.length - 1
+                                index < launch.materials.length - 1
                                   ? 'border-b border-gray-100'
                                   : ''
                               } hover:bg-gray-50 transition-colors`}
