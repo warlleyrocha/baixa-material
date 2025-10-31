@@ -7,6 +7,7 @@ import { BsBoxSeam } from 'react-icons/bs';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
 import { FormField } from '@/components/FormMaterial/FormField';
 import { SelectField } from '@/components/FormMaterial/SelectField';
+import { Package } from 'lucide-react';
 
 type DataMaterialsProps = {
   readonly register: UseFormRegister<FormData>;
@@ -43,7 +44,10 @@ export function DataMaterials({ register, errors, control }: DataMaterialsProps)
     <div className="bg-[#eff5ff]/80 backdrop-blur-sm rounded-2xl shadow border-0 pt-6 transform hover:scale-[1.01] transition-all duration-300 hover:shadow-lg">
       {/* Cabeçalho da seção */}
       <div className="flex justify-between items-center px-8">
-        <h2 className="flex items-center space-x-2 text-xl font-semibold text-gray-900">
+        <h2 className="flex items-center space-x-2 text-xl font-semibold text-[#302b4b]">
+          <div className="w-6 h-6 text-[#302b4b]">
+            <Package />
+          </div>
           <span>Materiais</span>
         </h2>
       </div>
@@ -78,8 +82,7 @@ export function DataMaterials({ register, errors, control }: DataMaterialsProps)
                 <CollapsibleTrigger asChild>
                   <div className="flex justify-between items-center p-4 bg-[#f0f6ff] border border-white/20 rounded-xl cursor-pointer shadow">
                     <div className="flex items-center space-x-2">
-                      <BsBoxSeam color="#302b4b" />
-                      <h3 className="text-md font-semibold text-gray-900">
+                      <h3 className="text-md font-semibold text-[#302b4b]">
                         {materialValues[index]?.name
                           ? materialValues[index].name
                           : `Material ${index + 1}`}

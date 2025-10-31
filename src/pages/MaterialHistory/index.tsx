@@ -117,7 +117,7 @@ export function MaterialHistory({ launches }: LaunchesListProps) {
                   <div>
                     <div className="flex items-center gap-2 mb-3">
                       <FiUsers className="w-4 h-4 text-gray-400" />
-                      <h3 className="font-semibold text-gray-900 text-sm">Técnicos</h3>
+                      <h3 className="font-semibold text-[#302b4b] text-sm">Técnicos</h3>
                     </div>
                     <div className="space-y-2">
                       {launch.officers.map((officer) => (
@@ -136,7 +136,7 @@ export function MaterialHistory({ launches }: LaunchesListProps) {
                   <div>
                     <div className="flex items-center gap-2 mb-3">
                       <FiPackage className="w-4 h-4 text-gray-400" />
-                      <h3 className="font-semibold text-gray-900 text-sm">Materiais</h3>
+                      <h3 className="font-semibold text-[#302b4b] text-sm">Materiais</h3>
                     </div>
                     <div className="overflow-x-auto rounded-lg border border-gray-200">
                       <table className="w-full text-sm">
