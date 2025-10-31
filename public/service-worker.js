@@ -1,4 +1,4 @@
-const CACHE_NAME = 'baixa-material-cache-v1';
+const CACHE_NAME = 'oficiais-de-rede-cache-v1';
 const URLS_TO_CACHE = [
   '/', // página inicial
   '/index.html', // HTML
