@@ -3,7 +3,6 @@ import type { Control, FieldErrors, UseFormRegister } from 'react-hook-form';
 import type { FormData } from '@/types/formMaterial';
 import { useState } from 'react';
 import { GoTrash } from 'react-icons/go';
-import { BsBoxSeam } from 'react-icons/bs';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
 import { FormField } from '@/components/FormMaterial/FormField';
 import { SelectField } from '@/components/FormMaterial/SelectField';
