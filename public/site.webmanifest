@@ -1,6 +1,6 @@
 {
-  "name": "Baixa de Material",
-  "short_name": "Baixa",
+  "name": "Oficiais de Rede",
+  "short_name": "Oficiais",
   "description": "Aplicação para gerenciamento e baixa de materiais.",
   "start_url": "/",
   "icons": [
