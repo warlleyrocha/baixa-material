@@ -1,5 +1,6 @@
 import { FormField } from './FormField';
 import type { FormData } from '../../types/formMaterial';
+import { Users } from 'lucide-react';
 import type { FieldErrors, UseFormRegister } from 'react-hook-form';
 
 type DataOfficerProps = {
@@ -11,21 +12,9 @@ export function DataOfficer({ register, errors }: DataOfficerProps) {
   return (
     <div className="bg-[#f4f9fd]/80 backdrop-blur-sm rounded-2xl shadow border-0 p-6 pt-1 space-y-6 transform hover:scale-[1.01] transition-all duration-300 hover:shadow-lg">
       <div className="pb-4">
-        <h2 className="flex items-center space-x-2 text-xl font-semibold text-gray-900">
+        <h2 className="flex items-center space-x-2 text-xl font-semibold text-[#302b4b]">
           <div className="w-6 h-6 text-[#302b4b]">
-            <svg
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
-              <circle cx="9" cy="7" r="4" />
-              <path d="m22 21-3-3" />
-              <circle cx="17" cy="17" r="3" />
-            </svg>
+            <Users />
           </div>
           <span>Dados dos Técnicos</span>
         </h2>

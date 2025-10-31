@@ -65,7 +65,7 @@ export function FormField<T extends FieldValues>({
 
   return (
     <div className={`flex flex-col ${className}`}>
-      <label htmlFor={id} className="text-gray-700 text-[14px] font-medium mb-2">
+      <label htmlFor={id} className="text-[#302b4b] text-[14px] font-medium mb-2">
         {label}
       </label>
       {multiline ? (

@@ -1,7 +1,7 @@
 import { FormField } from './FormField';
 import type { FormData } from '../../types/formMaterial';
 import type { FieldErrors, UseFormRegister } from 'react-hook-form';
-import { LuClipboardList } from 'react-icons/lu';
+import { ListCollapse } from 'lucide-react';
 
 type DataServiceProps = {
   readonly register: UseFormRegister<FormData>;
@@ -12,9 +12,9 @@ export function DataService({ register, errors }: DataServiceProps) {
   return (
     <div className="bg-[#f4f9fd]/80 backdrop-blur-sm rounded-2xl shadow border-0 p-6 space-y-6 transform hover:scale-[1.01] transition-all duration-300 hover:shadow-lg">
       <div className="pb-4">
-        <h2 className="flex items-center space-x-2 text-xl font-semibold text-gray-900">
+        <h2 className="flex items-center space-x-2 text-xl font-semibold text-[#302b4b]">
           <div className="w-6 h-6 text-[#302b4b]">
-            <LuClipboardList />
+            <ListCollapse />
           </div>
           <span>Detalhes do serviço</span>
         </h2>
