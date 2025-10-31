@@ -5,6 +5,7 @@ import { MaterialRegister } from './pages/MaterialRegister';
 import { MaterialHistory } from './pages/MaterialHistory';
 import { RequestMaterial } from './pages/MaterialRequisition';
 import Home from './pages/Home';
+import SplashScreen from '@/components/SplashScreen';
 
 function AppContent() {
   const [launches, setLaunches] = useState<any[]>([]);
@@ -71,6 +72,19 @@ function AppContent() {
 }
 
 function App() {
+  const [showSplash, setShowSplash] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowSplash(false);
+    }, 500);
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (showSplash) {
+    return <SplashScreen />;
+  }
   return (
     <Router>
       <AppContent />
